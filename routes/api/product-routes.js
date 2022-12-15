@@ -7,7 +7,8 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const product = await Product.findAll({
-      attributes: ['id,', 'product_name', 'price', 'stock'],
+      // attributes: ['id', 'product_name', 'price', 'stock'],
+
       include: [
         {
           model: Category,
@@ -21,7 +22,8 @@ router.get('/', async (req, res) => {
     });
     return res.json(product);
   } catch (err) {
-    res.status(500);
+    console.log(err);
+    res.status(500).json({ message: 'Error!' });
   }
   // find all products
   // be sure to include its associated Category and Tag data
@@ -34,7 +36,6 @@ router.get('/:id', async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: ['id', 'product_name', 'price', 'stock'],
       include: [
         {
           model: Category,
@@ -129,7 +130,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleteProduct = await Product.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json(deleteProduct);
+  } catch (err) {
+    res.status(500);
+  }
+
   // delete one product by its `id` value
 });
 

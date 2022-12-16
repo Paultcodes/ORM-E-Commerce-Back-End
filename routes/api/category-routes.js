@@ -13,11 +13,10 @@ router.get('/', async (req, res) => {
     });
     return res.json(categoryData);
   } catch (err) {
-    res.status(500);
+    console.log(err)
   }
 
   // find all categories
-  // be sure to include its associated Products
 });
 
 router.get('/:id', async (req, res) => {
@@ -33,10 +32,10 @@ router.get('/:id', async (req, res) => {
     });
     return res.json(categoryId);
   } catch (err) {
-    res.status(500);
+    console.log(err)
   }
   // find one category by its `id` value
-  // be sure to include its associated Products
+
 });
 
 router.post('/', async (req, res) => {
@@ -46,7 +45,7 @@ router.post('/', async (req, res) => {
     });
     return res.json(createCategory);
   } catch (err) {
-    res.status(500);
+    console.log(err)
   }
   // create a new category
 });
@@ -65,7 +64,7 @@ router.put('/:id', async (req, res) => {
     );
     return res.json(updateCategory);
   } catch (err) {
-    res.status(500);
+    console.log(err)
   }
   // update a category by its `id` value
 });
@@ -79,7 +78,8 @@ router.delete('/:id', async (req, res) => {
     });
     return res.json(deleteCategory);
   } catch (err) {
-    res.status(500);
+    console.log(err);
+    res.status(500).json({ message: 'Error!' });
   }
 
   // delete a category by its `id` value

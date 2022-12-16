@@ -13,11 +13,11 @@ router.get('/', async (req, res) => {
     });
     return res.json(allTags);
   } catch (err) {
-    res.status(500);
+    console.log(err);
   }
 
   // find all tags
-  // be sure to include its associated Product data
+
 });
 
 router.get('/:id', async (req, res) => {
@@ -33,10 +33,9 @@ router.get('/:id', async (req, res) => {
     });
     return res.json(findOne);
   } catch (err) {
-    res.status(500);
+    console.log(err);
   }
   // find a single tag by its `id`
-  // be sure to include its associated Product data
 });
 
 router.post('/', async (req, res) => {
@@ -46,7 +45,7 @@ router.post('/', async (req, res) => {
     });
     return res.json(createTag);
   } catch (err) {
-    res.status(500);
+    console.log(err);
   }
 
   // create a new tag
@@ -66,7 +65,7 @@ router.put('/:id', async (req, res) => {
     );
     return res.json(updateTag);
   } catch (err) {
-    res.status(500);
+    console.log(err);
   }
   // update a tag's name by its `id` value
 });
@@ -80,7 +79,7 @@ router.delete('/:id', async (req, res) => {
     });
     return res.json(deleteTag);
   } catch (err) {
-    res.status(500);
+    console.log(err);
   }
   // delete on tag by its `id` value
 });
